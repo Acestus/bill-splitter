@@ -1,3 +1,5 @@
+import random
+
 party_dict = {}
 friend_list = []
 
@@ -17,4 +19,16 @@ else:
     print("\nEnter the total bill value:")
     bill_value = int(input())
     party_dict = dict.fromkeys(friend_list, bill_splitter(bill_value, num_friends))
+    print("\nDo you want to use the \"Who is lucky?\" feature? Write Yes/No:")
+    user_input = input()
+    if user_input == "Yes":
+        lucky = random.choice(friend_list)
+        print(f"{lucky} is the lucky one!")
+        party_dict = dict.fromkeys(friend_list, bill_splitter(bill_value, num_friends - 1))
+        party_dict[lucky] = 0
+
+    if user_input == "No":
+        print("No one is going to be lucky")
+    print("\n")
     print(party_dict)
+
